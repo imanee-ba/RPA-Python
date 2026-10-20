@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Formulaire de contact</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 420px; margin: 40px auto; }
+  input, textarea, button { width: 100%; margin: 6px 0 14px; padding: 8px; box-sizing: border-box; }
+  #ok { color: green; font-weight: bold; }
+</style>
+</head>
+<body>
+<h2>Contactez-nous</h2>
+<form id="f">
+  <label>Nom</label><input id="nom" name="nom" autofocus>
+  <label>Email</label><input id="email" name="email" type="email">
+  <label>Message</label><textarea id="message" name="message" rows="4"></textarea>
+  <button type="submit">Envoyer</button>
+</form>
+<p id="ok"></p>
+<ul id="log"></ul>
+<script>
+  document.getElementById('f').addEventListener('submit', e => {
+    e.preventDefault();
+    const nom = document.getElementById('nom').value;
+    const email = document.getElementById('email').value;
+    const msg = document.getElementById('message').value;
+    const li = document.createElement('li');
+    li.textContent = nom + " | " + email + " | " + msg;
+    document.getElementById('log').appendChild(li);
+    document.getElementById('ok').textContent = "Formulaire envoyé (" + document.getElementById('log').children.length + ")";
+    e.target.reset();
+    document.getElementById('nom').focus();
+  });
+</script>
+</body>
+</html>
